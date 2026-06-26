@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MirrorTheVideo로 보기</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body>
+    <main class="page">
+      <section class="intro" aria-labelledby="page-title">
+        <h1 id="page-title">유튜브 영상 좌우 반전</h1>
+        <p>유튜브 주소를 붙여넣고 버튼을 누르면 MirrorTheVideo에서 바로 열립니다.</p>
+      </section>
+
+      <form class="video-form" id="video-form" novalidate>
+        <div class="field">
+          <label for="youtube-url">유튜브 주소</label>
+          <input
+            id="youtube-url"
+            name="youtube-url"
+            type="url"
+            inputmode="url"
+            autocomplete="url"
+            placeholder="https://www.youtube.com/watch?v=..."
+            aria-describedby="url-help url-error"
+            required
+          >
+          <!-- The input points to both helper and error text so screen readers announce useful context. -->
+          <p class="help-text" id="url-help">공유한 유튜브 영상 주소를 그대로 붙여넣으세요.</p>
+          <p class="error-text" id="url-error" aria-live="polite"></p>
+        </div>
+
+        <button class="submit-button" type="submit">좌우 반전해서 보기</button>
+      </form>
+    </main>
+  </body>
+</html>
