@@ -1,6 +1,7 @@
 import { buildMirrorTheVideoUrl, parseYouTubeVideoId } from "./youtube-url.js";
 
-// The parser returns small English error codes; the UI translates them for the user.
+// The parser returns short English error codes for the code to use.
+// This table turns those codes into clear Korean messages for the user.
 const ERROR_MESSAGES = {
   empty: "유튜브 주소를 입력해 주세요.",
   "malformed-url": "주소 형식이 올바르지 않습니다. http:// 또는 https://로 시작하는 전체 주소를 붙여넣어 주세요.",
@@ -18,7 +19,9 @@ form.addEventListener("submit", handleSubmit);
 input.addEventListener("input", clearError);
 
 function handleSubmit(event) {
-  // Stop the browser's default form submit so we can validate first.
+  // Stop the browser's normal form submit.
+  // That gives us time to check the YouTube URL and show a helpful message
+  // before deciding whether to leave the page.
   event.preventDefault();
 
   const result = parseYouTubeVideoId(input.value);
@@ -30,7 +33,7 @@ function handleSubmit(event) {
   }
 
   clearError();
-  // Assigning window.location.href redirects in the same browser tab.
+  // Setting window.location.href opens the MirrorTheVideo page in this same tab.
   window.location.href = buildMirrorTheVideoUrl(result.videoId);
 }
 

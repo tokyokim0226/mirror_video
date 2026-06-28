@@ -8,7 +8,9 @@ const SUPPORTED_HOSTS = new Set([
 const VIDEO_ID_PATTERN = /^[A-Za-z0-9_-]{11}$/;
 const MIRROR_BASE_URL = "https://www.mirrorthevideo.com/watch";
 
-// This function is pure: it does not read the page or redirect the browser.
+// This function only looks at the text it receives and returns a result.
+// It does not read the page, show messages, or move the browser to a new URL,
+// which keeps it easy to test with Node.
 export function parseYouTubeVideoId(input) {
   const value = input.trim();
 
@@ -19,7 +21,8 @@ export function parseYouTubeVideoId(input) {
   let url;
 
   try {
-    // URL parsing is safer than splitting strings by hand.
+    // The built-in URL object understands web addresses better than hand-written
+    // string splitting, so it catches many invalid addresses for us.
     url = new URL(value);
   } catch {
     return { ok: false, error: "malformed-url" };
@@ -68,17 +71,20 @@ function extractVideoIdFromUrl(url) {
   const hostname = url.hostname.toLowerCase();
   const pathParts = url.pathname.split("/").filter(Boolean);
 
-  // Short links store the video ID directly after the domain.
+  // A short link looks like https://youtu.be/VIDEO_ID.
+  // The first path part after the domain is the video ID.
   if (hostname === "youtu.be") {
     return pathParts[0] || "";
   }
 
-  // Watch links store the video ID in the v query parameter.
+  // A normal watch link looks like https://www.youtube.com/watch?v=VIDEO_ID.
+  // The video ID is stored in the "v" query parameter.
   if (url.pathname === "/watch") {
     return url.searchParams.get("v") || "";
   }
 
-  // Shorts and live links store the video ID as the next path segment.
+  // Shorts and live links look like /shorts/VIDEO_ID or /live/VIDEO_ID.
+  // The video ID is the second path part.
   if (pathParts[0] === "shorts" || pathParts[0] === "live") {
     return pathParts[1] || "";
   }

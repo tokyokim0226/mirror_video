@@ -1,6 +1,6 @@
 :root {
   color-scheme: light;
-  /* These variables keep the color choices in one place. */
+  /* Color variables keep repeated colors in one easy-to-change place. */
   --background: #f8fafc;
   --surface: #ffffff;
   --text: #17202a;
@@ -17,7 +17,7 @@
 }
 
 html {
-  /* The design starts at the smallest Android width we agreed to support. */
+  /* Start with the smallest supported Android phone width. */
   min-width: 320px;
   background: var(--background);
 }
@@ -87,7 +87,7 @@ input::placeholder {
 
 input:focus,
 button:focus {
-  /* A strong focus ring helps keyboard users and users with low vision. */
+  /* A bright focus ring shows which field or button is active. */
   outline: 4px solid var(--focus);
   outline-offset: 3px;
 }
@@ -102,7 +102,7 @@ input[aria-invalid="true"] {
 }
 
 .error-text {
-  /* Reserving space prevents the layout from jumping when an error appears. */
+  /* Keep space for errors so the button does not jump when a message appears. */
   min-height: 1.5rem;
   color: var(--error);
   font-weight: 700;
@@ -126,7 +126,7 @@ input[aria-invalid="true"] {
 }
 
 @media (min-width: 48rem) {
-  /* Desktop gets a little more breathing room, but the mobile layout stays the base. */
+  /* Wider screens get more top space while the mobile layout remains the base. */
   .page {
     padding-top: 4rem;
   }
