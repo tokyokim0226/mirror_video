@@ -3,7 +3,7 @@ import { buildMirrorTheVideoUrl, parseYouTubeVideoId } from "./youtube-url.js";
 // The parser returns short English error codes for the code to use.
 // This table turns those codes into clear Korean messages for the user.
 const ERROR_MESSAGES = {
-  empty: "유튜브 주소를 입력해 주세요.",
+  empty: "유튜브 주소를 입력해 주세요",
   "malformed-url": "주소 형식이 올바르지 않습니다. http:// 또는 https://로 시작하는 전체 주소를 붙여넣어 주세요.",
   "unsupported-protocol": "http 또는 https로 시작하는 주소만 사용할 수 있습니다.",
   "non-youtube-domain": "유튜브 주소만 사용할 수 있습니다.",
