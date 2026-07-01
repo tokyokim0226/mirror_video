@@ -11,6 +11,7 @@ const ERROR_MESSAGES = {
   "invalid-video-id": "영상 ID가 올바르지 않습니다. 유튜브에서 공유한 영상 주소를 다시 붙여넣어 주세요.",
 };
 
+
 const form = document.querySelector("#video-form");
 const input = document.querySelector("#youtube-url");
 const errorMessage = document.querySelector("#url-error");
