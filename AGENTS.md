@@ -4,7 +4,7 @@
 
 This is a simple mobile-first website that helps an older Android user open YouTube videos through MirrorTheVideo
 
-Prioritize reliability, readability, and ease of use over feature quantity.
+Prioritize reliability, readability, and ease of use over feature quantity
 
 ## Technology
 
